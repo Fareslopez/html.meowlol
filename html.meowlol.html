@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meme Mover</title>
+    <style>
+        /* Add some basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #meme {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Your name at the top of the HTML file -->
+    <!-- Name: Your Name -->
+
+    <!-- Start button -->
+    <button id="startButton" onclick="startMoving()">Start</button>
+    <!-- Stop button -->
+    <button id="stopButton" onclick="stopMoving()" disabled>Stop</button>
+
+    <!-- Meme image -->
+    <img id="meme" src="meme.jpg" alt="Meme Image">
+
+    <script>
+        // Variable to hold the interval ID
+        let moveInterval;
+
+        // Function to start moving the meme image
+        function startMoving() {
+            // Disable the start button
+            document.getElementById('startButton').disabled = true;
+            // Enable the stop button
+            document.getElementById('stopButton').disabled = false;
+
+            // Function to move the meme image
+            function moveMeme() {
+                // Get the meme image element
+                const meme = document.getElementById('meme');
+                // Generate random positions
+                const x = Math.floor(Math.random() * (window.innerWidth - meme.width));
+                const y = Math.floor(Math.random() * (window.innerHeight - meme.height));
+                // Set the new position
+                meme.style.left = x + 'px';
+                meme.style.top = y + 'px';
+            }
+
+            // Call moveMeme every 500 milliseconds
+            moveInterval = setInterval(moveMeme, 500);
+        }
+
+        // Function to stop moving the meme image
+        function stopMoving() {
+            // Disable the stop button
+            document.getElementById('stopButton').disabled = true;
+            // Enable the start button
+            document.getElementById('startButton').disabled = false;
+
+            // Clear the interval to stop moving the meme
+            clearInterval(moveInterval);
+        }
+    </script>
+</body>
+</html>
